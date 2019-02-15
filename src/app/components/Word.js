@@ -7,15 +7,19 @@ export const Word = ( props ) => {
     let englishWord = props.englishWord;
     let wordType = props.wordType;
 
-    const wordImage = require( `../resources/${wordType}_${englishWord}.png` );
+    let hasImage = ( wordType === "phrase" )? false : true;
+
+    if ( hasImage ) {
+        var wordImage = require( `../resources/${wordType}_${englishWord}.png` );
+    }
 
     return (
-        <div>
-          <div className="wordsBlock">
+        <div className="word-container">
+          <div>
             <p>{ miwokWord }</p>
             <p>{ englishWord }</p>
           </div>
-          <img src={ wordImage } width={ wordImageSize } height={ wordImageSize }/>
+          { hasImage? <img src={ wordImage } width={ wordImageSize } height={ wordImageSize }/> : "" }
         </div>
     );
 }
